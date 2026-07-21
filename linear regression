@@ -1,0 +1,84 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyM6pC6GAe7j1IeCosYiavaq",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/avinash202006/deep-learning-1/blob/main/linear%20regression\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "BxNCVkhf01CH",
+        "outputId": "cb992a35-f1f8-4cac-8892-a1cf6869ba1d"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Predicted Marks: 95.0\n"
+          ]
+        },
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "/usr/local/lib/python3.12/dist-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names\n",
+            "  warnings.warn(\n"
+          ]
+        }
+      ],
+      "source": [
+        "import pandas as pd\n",
+        "from sklearn.linear_model import LinearRegression\n",
+        "\n",
+        "# Dataset\n",
+        "data = {\n",
+        "    'Hours':[1,2,3,4,5,6],\n",
+        "    'Marks':[35,45,55,65,75,85]\n",
+        "}\n",
+        "\n",
+        "df = pd.DataFrame(data)\n",
+        "\n",
+        "X = df[['Hours']]\n",
+        "y = df['Marks']\n",
+        "\n",
+        "# Create model\n",
+        "model = LinearRegression()\n",
+        "\n",
+        "# Train model\n",
+        "model.fit(X,y)\n",
+        "\n",
+        "# Predict marks for 7 hours\n",
+        "prediction = model.predict([[7]])\n",
+        "\n",
+        "print(\"Predicted Marks:\",prediction[0])"
+      ]
+    }
+  ]
+}
