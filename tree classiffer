@@ -1,0 +1,94 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNWj1ohKR/2kziG4DutUA+z",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/avinash202006/deep-learning-1/blob/main/tree%20classiffer\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "puyaLGKE4x8P",
+        "outputId": "62b0a555-e2fb-4b9c-d2ca-594b89555765"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Student Will Fail\n"
+          ]
+        },
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "/usr/local/lib/python3.12/dist-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but MLPClassifier was fitted with feature names\n",
+            "  warnings.warn(\n"
+          ]
+        }
+      ],
+      "source": [
+        "import pandas as pd\n",
+        "from sklearn.neural_network import MLPClassifier\n",
+        "\n",
+        "# Dataset\n",
+        "data = {\n",
+        "    \"Study_Hours\": [2, 3, 5, 6, 8],\n",
+        "    \"Attendance\": [60, 65, 80, 85, 95],\n",
+        "    \"Assignment\": [50, 55, 70, 80, 90],\n",
+        "    \"Result\": [0, 0, 1, 1, 1]\n",
+        "}\n",
+        "\n",
+        "df = pd.DataFrame(data)\n",
+        "\n",
+        "# Inputs\n",
+        "X = df[[\"Study_Hours\", \"Attendance\", \"Assignment\"]]\n",
+        "\n",
+        "# Output\n",
+        "y = df[\"Result\"]\n",
+        "\n",
+        "# Create MLP\n",
+        "model = MLPClassifier(hidden_layer_sizes=(4,),\n",
+        "                      max_iter=2000,\n",
+        "                      random_state=42)\n",
+        "\n",
+        "# Train\n",
+        "model.fit(X, y)\n",
+        "\n",
+        "# Predict\n",
+        "prediction = model.predict([[4, 75, 65]])\n",
+        "\n",
+        "if prediction[0] == 1:\n",
+        "    print(\"Student Will Pass\")\n",
+        "else:\n",
+        "    print(\"Student Will Fail\")"
+      ]
+    }
+  ]
+}
